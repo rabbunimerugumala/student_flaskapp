@@ -1,1 +1,56 @@
-{% extends "base.html "%}
+{% extends 'base.html' %}
+
+{% block content %}
+<h1 style="font-family: 'Aclonica';font-size: 40px" class="text-center p-3">{% block title %} ADD STUDENT  {% endblock %}</h1>
+<form method="post">
+
+    <p>
+    <div class="row">
+        <div class="col">
+            <label for="first_name">First Name</label>
+            <input type="text" class="form-control border border-info" placeholder=" Student First Name.."
+                   aria-label="First name" name="first_name" required>
+        </div>
+        <div class="col">
+            <label for="last_name">Last Name</label>
+            <input type="text" class="form-control border border-info" placeholder=" Student Last Name.."
+                   aria-label="Last name" name="last_name" required>
+        </div>
+    </div>
+    </p>
+
+    <p>
+    <div class="mb-3">
+        <label for="email">Email</label>
+        <input type="email" class="form-control border border-info" placeholder=" Student Email.." name="email"
+               required>
+    </div>
+    </p>
+
+    <p>
+    <div class="mb-3">
+        <label for="age">Age</label>
+        <input type="text" class="form-control border border-info" placeholder=" Student Age.." name="age" required>
+    </div>
+    </p>
+
+    <p>
+        <label for="bio">Bio</label>
+        <br>
+        <textarea name="bio"
+                  placeholder="Bio.."
+                  rows="3"
+                  cols="195"
+                  class="border border-info"
+        ></textarea>
+    </p>
+
+    <p>
+    <div class="d-grid gap-2">
+        <button class="btn btn-success border border-info" type="submit">Submit</button>
+    </div>
+    </p>
+
+</form>
+
+{% endblock %}
