@@ -36,15 +36,16 @@
                            href="{{url_for('students')}}"><i class="bi bi-person-lines-fill"></i> Student Details</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{'active text-primary' if request.path == '/add_student' else 'text-light'}}"
+                        <a class="nav-link {{'active text-primary' if request.path == '/add_student/' else 'text-light'}}"
                            href="{{url_for('add_student')}}"> <i class="bi bi-person-plus-fill"></i> Add Student</a>
                     </li>
                     <li class="nav-item">
                         <!--                    <a class="nav-link mx-auto p-2" href="{{url_for('search_student')}}">Search Student</a>-->
                         <form method="post" action="{{url_for('search_student')}}" class="d-flex" role="search">
                             <input class="form-control mb-2 my-1 mx-2" type="search" name="student_id"
-                                   placeholder="Search Student"
-                                   aria-label="Search">
+                                   placeholder="Search Student.. "
+                                   aria-label="Search"
+                                   style="width:160px;">
                             <button class="btn btn-outline-primary px-3 my-1 mb-2" type="submit"><i
                                     class="bi bi-search"></i></button>
                         </form>

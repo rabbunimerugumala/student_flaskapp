@@ -3,52 +3,56 @@
 {% block title %}Edit Student Page{% endblock %}
 
 {% block content %}
-<h1 style="font-family: 'Aclonica';font-size: 40px" class="text-center p-3">EDIT STUDENTS</h1>
-<form method="post" class="container col-md-6">
+<div style="background-image: linear-gradient(45deg, #93a5cf 0%, #e4efe9 100%);">
+    <h1 style="font-family: 'Aclonica';font-size: 40px" class="text-center pt-5">EDIT STUDENT</h1>
+    <form method="post" class="container col-md-6">
 
-    <div class="row">
-        <div class="col-md-6 mb-3">
-            <label for="first_name">First Name</label>
-            <input value="{{student.first_name}}" type="text" class="form-control border border-info"
-                   placeholder=" Student First Name.."
-                   aria-label="First name" name="first_name" required>
+        <div class="p-3">
+            <div class="row">
+                <div class="col mb-3">
+                    <label for="first_name">First Name</label>
+                    <input value="{{student.first_name}}" type="text" class="form-control border border-info"
+                           placeholder=" Student First Name.."
+                           aria-label="First name" name="first_name" id="first_name" required>
+                </div>
+                <div class="col mb-3">
+                    <label for="last_name">Last Name</label>
+                    <input value="{{student.last_name}}" type="text" class="form-control border border-info"
+                           placeholder=" Student Last Name.."
+                           aria-label="Last name" name="last_name" id="last_name" required>
+                </div>
+            </div>
+
+
+            <div class="mb-3">
+                <label for="email">Email</label>
+                <input value="{{student.email}}" type="email" class="form-control  border-info "
+                       placeholder=" Student Email.." name="email"
+                       id="email" required>
+            </div>
+
+
+            <div class="mb-3">
+                <label for="age">Age</label>
+                <input value="{{student.age}}" type="text" class="form-control border border-info"
+                       placeholder=" Student Age.." name="age" id="age" required>
+            </div>
+
+
+            <label for="bio">Bio</label>
+            <br>
+            <textarea name="bio"
+                      id="bio"
+                      placeholder="Bio.."
+                      class="form-control mb-5 border border-info"
+            >{{student.bio}}</textarea>
+
+
+            <div class="d-grid my-5">
+                <button class="btn btn-success border border-info " type="submit">Submit</button>
+            </div>
         </div>
-        <div class="col-md-6 mb-3">
-            <label for="last_name">Last Name</label>
-            <input value="{{student.last_name}}" type="text" class="form-control border border-info"
-                   placeholder=" Student Last Name.."
-                   aria-label="Last name" name="last_name" required>
-        </div>
-    </div>
-
-    <div class="mb-3">
-        <label for="email">Email</label>
-        <input value="{{student.email}}" type="email" class="form-control border border-info"
-               placeholder=" Student Email.."
-               name="email"
-               required>
-    </div>
-
-
-    <div class="mb-3">
-        <label for="age">Age</label>
-        <input value="{{student.age}}" type="text" class="form-control border border-info" placeholder=" Student Age.."
-               name="age" required>
-    </div>
-    <div class="mb-5">
-
-        <label for="bio">Bio</label>
-
-        <textarea name="bio"
-                  placeholder="Bio.."
-                  class="form-control "
-
-        >{{student.bio}}
-    </textarea>
-    </div>
-    <div>
-        <button class="btn btn-success w-100" type="submit">Submit</button>
-    </div>
-</form>
-
+    </form>
+</div>
 {% endblock %}
+
