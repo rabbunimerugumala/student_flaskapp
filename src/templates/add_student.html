@@ -1,56 +1,53 @@
 {% extends 'base.html' %}
 
+{% block title %}Add Student Page{% endblock %}
+
 {% block content %}
-<h1 style="font-family: 'Aclonica';font-size: 40px" class="text-center p-3">{% block title %} ADD STUDENT  {% endblock %}</h1>
-<form method="post">
+<div style="background-image: linear-gradient(45deg, #93a5cf 0%, #e4efe9 100%);" >
+<h1 style="font-family: 'Aclonica';font-size: 40px" class="text-center pt-5  ">ADD STUDENT</h1>
+<form method="post" class="container col-md-6">
 
-    <p>
-    <div class="row">
-        <div class="col">
-            <label for="first_name">First Name</label>
-            <input type="text" class="form-control border border-info" placeholder=" Student First Name.."
-                   aria-label="First name" name="first_name" required>
+    <div class="p-3" >
+        <div class="row">
+            <div class="col mb-3">
+                <label for="first_name">First Name</label>
+                <input type="text" class="form-control border border-info" placeholder=" Student First Name.."
+                       aria-label="First name" name="first_name" id="first_name" required>
+            </div>
+            <div class="col mb-3">
+                <label for="last_name">Last Name</label>
+                <input type="text" class="form-control border border-info" placeholder=" Student Last Name.."
+                       aria-label="Last name" name="last_name" id="last_name"  required>
+            </div>
         </div>
-        <div class="col">
-            <label for="last_name">Last Name</label>
-            <input type="text" class="form-control border border-info" placeholder=" Student Last Name.."
-                   aria-label="Last name" name="last_name" required>
+
+
+        <div class="mb-3">
+            <label for="email">Email</label>
+            <input type="email" class="form-control  border-info " placeholder=" Student Email.." name="email"
+                   id="email" required>
         </div>
-    </div>
-    </p>
 
-    <p>
-    <div class="mb-3">
-        <label for="email">Email</label>
-        <input type="email" class="form-control border border-info" placeholder=" Student Email.." name="email"
-               required>
-    </div>
-    </p>
 
-    <p>
-    <div class="mb-3">
-        <label for="age">Age</label>
-        <input type="text" class="form-control border border-info" placeholder=" Student Age.." name="age" required>
-    </div>
-    </p>
+        <div class="mb-3">
+            <label for="age">Age</label>
+            <input type="text" class="form-control border border-info" placeholder=" Student Age.." name="age" id="age" required>
+        </div>
 
-    <p>
+
         <label for="bio">Bio</label>
         <br>
         <textarea name="bio"
+                  id="bio"
                   placeholder="Bio.."
-                  rows="3"
-                  cols="195"
-                  class="border border-info"
+                  class="form-control mb-5 border border-info"
         ></textarea>
-    </p>
 
-    <p>
-    <div class="d-grid gap-2">
-        <button class="btn btn-success border border-info" type="submit">Submit</button>
+
+        <div class="d-grid my-5">
+            <button class="btn btn-success border border-info " type="submit">Submit</button>
+        </div>
     </div>
-    </p>
-
 </form>
-
+</div>
 {% endblock %}
