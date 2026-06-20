@@ -1,61 +1,63 @@
 {% extends 'base.html' %}
 
 {% block title %}Search Student Page{% endblock %}
-<link rel="icon" href="/svg/school.png" type="image/x-icon"/>
 
 {% block content %}
+<div style="background-image: linear-gradient(45deg, #93a5cf 0%, #e4efe9 100%); min-height: 70vh;" class="py-5">
+    <div class="container">
+        <h1 style="font-family: 'Aclonica';font-size: 40px" class="text-center pb-3">SEARCH STUDENT</h1>
 
-<!--
-<div class="container col-md-6 py-5">
-    <form method="post">
-        <div class="mb-3">
-            <label for="search">Roll Number</label>
-            <input class="form-control" id="search" name="student_id" placeholder="Enter Student Roll Number"/>
+        <form method="post" action="{{ url_for('search_student') }}" class="container col-md-6 mb-4">
+            <div class="mb-3">
+                <label for="query" class="form-label">Name, ID, Roll Number, or Email</label>
+                <input class="form-control border border-info" id="query" name="query" value="{{ query or '' }}" placeholder="Example: John, 1, 21030-EE-1, john@email.com" required>
+            </div>
+            <div class="d-grid">
+                <button type="submit" class="btn btn-primary">Search</button>
+            </div>
+        </form>
 
+        {% if message %}
+        <div class="alert alert-warning container col-md-6 text-center" role="alert">
+            {{ message }}
         </div>
-        <div class="mb-3">
-            <button type="submit" class="btn btn-primary">Search</button>
-        </div>
-    </form>
------>
+        {% endif %}
 
-<div style="background-image: linear-gradient(45deg, #93a5cf 0%, #e4efe9 100%);" class="pb-3">
-
-        {% if student != None%}
-          <h1 style="font-family: 'Aclonica';font-size: 40px" class="text-center pt-5 pb-3">'{{student.id}}' STUDENT
-        DETAILS</h1>
-    <div class="container my-4">
+        {% if students %}
+        <h2 style="font-family: 'Aclonica';font-size: 32px" class="text-center pb-3">SEARCH RESULTS</h2>
         <table class="py-2 mb-5 table table-striped table-hover">
             <thead class="table-dark">
-            <tr class="">
-                <th scope="col">ID</th>
+            <tr>
+                <th scope="col">Roll Number</th>
                 <th scope="col">Name</th>
+                <th scope="col">Age</th>
                 <th scope="col">Email</th>
-                <th scope="col">Action</th>
+                <th scope="col">Bio</th>
+                <th scope="col">Actions</th>
             </tr>
             </thead>
-            <tr class="table-success ">
-                <td class="pt-2">{{ student.id }}</td>
-                <td>{{ student.first_name+ ' '+student.last_name }}</td>
+            {% for student in students %}
+            <tr class="table-success">
+                <td class="pt-2">21030-EE-{{ student.id }}</td>
+                <td>{{ student.first_name }} {{ student.last_name }}</td>
+                <td>{{ student.age }}</td>
                 <td>{{ student.email }}</td>
-                <td class="d-flex gap-2">
-                    <a href="{{url_for('edit_student',student_id=student.id)}}">
-                        <button class="btn  btn-warning ">
-                            <i class="bi bi-pencil-square "></i>
-                        </button>
-                    </a>
-
-                    <form method="post" action="{{url_for('delete_student',student_id=student.id)}}">
-                        <button type="submit" class="btn  btn-danger "><i class="bi bi-trash3"></i></button>
-                    </form>
-
+                <td>{{ student.bio }}</td>
+                <td>
+                    <div class="d-flex gap-2">
+                        <a href="{{ url_for('edit_student', student_id=student.id) }}" class="btn btn-warning btn-sm">
+                            <i class="bi bi-pencil-square"></i> Edit
+                        </a>
+                        <form method="post" action="{{ url_for('delete_student', student_id=student.id) }}">
+                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Delete this student?');">
+                                <i class="bi bi-trash3"></i> Delete
+                            </button>
+                        </form>
+                    </div>
                 </td>
             </tr>
+            {% endfor %}
         </table>
-        {% else %}
-        <h1 style="font-family: 'Aclonica';font-size: 40px" class="text-center pt-5 pb-3">'NO STUDENT
-            DETAILS</h1>
-
         {% endif %}
     </div>
 </div>
