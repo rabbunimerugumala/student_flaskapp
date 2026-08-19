@@ -1,54 +1,219 @@
-{% extends "base.html " %}
-{% block title %}All Students Page{% endblock%}
+{% extends "base.html" %}
+
+{% block title %}Students | Student Management System{% endblock %}
 
 {% block content %}
-<div style="background-image: linear-gradient(45deg, #93a5cf 0%, #e4efe9 100%); min-height: 70vh;" class="pb-3">
-    <h1 style="font-family: 'Aclonica';font-size: 40px" class="text-center pt-5 pb-3">ALL STUDENTS</h1>
 
-    <div class="container">
-        {% if students %}
-        <table class="py-2 mb-5 table table-striped table-hover">
-            <thead class="table-dark">
-            <tr>
-                <th scope="col">ID</th>
-                <th scope="col">First Name</th>
-                <th scope="col">Last Name</th>
-                <th scope="col">Age</th>
-                <th scope="col">Email</th>
-                <th scope="col">Date</th>
-                <th scope="col">Bio</th>
-                <th scope="col">Actions</th>
-            </tr>
-            </thead>
-            {% for student in students %}
-            <tr class="table-success">
-                <td>21030-EE-{{ student.id }}</td>
-                <td>{{ student.first_name }}</td>
-                <td>{{ student.last_name }}</td>
-                <td>{{ student.age }}</td>
-                <td>{{ student.email }}</td>
-                <td>{{ student.created_at }}</td>
-                <td>{{ student.bio }}</td>
-                <td>
-                    <div class="d-flex gap-2">
-                        <a href="{{ url_for('edit_student', student_id=student.id) }}" class="btn btn-warning btn-sm">
-                            <i class="bi bi-pencil-square"></i> Edit
-                        </a>
-                        <form method="post" action="{{ url_for('delete_student', student_id=student.id) }}">
-                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Delete this student?');">
-                                <i class="bi bi-trash3"></i> Delete
-                            </button>
-                        </form>
-                    </div>
-                </td>
-            </tr>
-            {% endfor %}
-        </table>
-        {% else %}
-        <div class="alert alert-info text-center" role="alert">
-            No students are available. Add a student first.
+<div class="students-page">
+
+    <div class="students-container">
+
+        <!-- Page Header -->
+        <div class="students-header">
+
+            <div>
+                <span class="page-eyebrow">STUDENT DIRECTORY</span>
+
+                <h1>All Students</h1>
+
+                <p>
+                    View and manage all registered students.
+                </p>
+            </div>
+
+            <a href="{{ url_for('add_student') }}" class="add-student-btn">
+                <i class="bi bi-person-plus-fill"></i>
+                Add Student
+            </a>
+
         </div>
+
+
+        {% if students %}
+
+        <!-- Student Cards -->
+        <div class="students-grid">
+
+            {% for student in students %}
+
+            <article class="student-card">
+
+                <!-- Card Header -->
+                <div class="student-card-header">
+
+                    <div class="student-profile">
+
+                        <div class="student-avatar">
+                            {{ student.first_name[0]|upper }}{{ student.last_name[0]|upper }}
+                        </div>
+
+                        <div class="student-profile-info">
+
+                            <h2>
+                                {{ student.first_name }} {{ student.last_name }}
+                            </h2>
+
+                            <span class="student-id">
+                                <i class="bi bi-person-badge"></i>
+                                21030-EE-{{ student.id }}
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Age -->
+                    <div class="student-age">
+
+                        <strong>{{ student.age }}</strong>
+
+                        <span>YEARS</span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Card Divider -->
+                <div class="student-divider"></div>
+
+
+                <!-- Student Information -->
+                <div class="student-info">
+
+                    <!-- Email -->
+                    <div class="student-info-row">
+
+                        <div class="info-icon email-icon">
+                            <i class="bi bi-envelope-fill"></i>
+                        </div>
+
+                        <div class="info-content">
+
+                            <span class="info-label">
+                                EMAIL
+                            </span>
+
+                            <p>
+                                {{ student.email }}
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Date -->
+                    <div class="student-info-row">
+
+                        <div class="info-icon date-icon">
+                            <i class="bi bi-calendar3"></i>
+                        </div>
+
+                        <div class="info-content">
+
+                            <span class="info-label">
+                                DATE ADDED
+                            </span>
+
+                            <p>
+                                {{ student.created_at.strftime('%d %b %Y') if student.created_at else 'Unknown' }}
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Bio -->
+                    <div class="student-info-row">
+
+                        <div class="info-icon bio-icon">
+                            <i class="bi bi-card-text"></i>
+                        </div>
+
+                        <div class="info-content">
+
+                            <span class="info-label">
+                                BIO
+                            </span>
+
+                            <p class="student-bio">
+                                {{ student.bio or "No bio available" }}
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Card Actions -->
+                <div class="student-card-actions">
+
+                    <a
+                        href="{{ url_for('edit_student', student_id=student.id) }}"
+                        class="card-action edit-action"
+                    >
+                        <i class="bi bi-pencil-square"></i>
+                        Edit
+                    </a>
+
+
+                    <form
+                        method="post"
+                        action="{{ url_for('delete_student', student_id=student.id) }}"
+                    >
+
+                        <button
+                            type="submit"
+                            class="card-action delete-action"
+                            onclick="return confirm('Delete this student?');"
+                        >
+                            <i class="bi bi-trash3"></i>
+                            Delete
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </article>
+
+            {% endfor %}
+
+        </div>
+
+
+        {% else %}
+
+        <!-- Empty State -->
+        <div class="empty-students">
+
+            <div class="empty-icon">
+                <i class="bi bi-people"></i>
+            </div>
+
+            <h2>No Students Yet</h2>
+
+            <p>
+                There are currently no students in the system.
+                Add your first student to get started.
+            </p>
+
+            <a href="{{ url_for('add_student') }}" class="add-student-btn">
+                <i class="bi bi-person-plus-fill"></i>
+                Add First Student
+            </a>
+
+        </div>
+
         {% endif %}
+
     </div>
+
 </div>
+
 {% endblock %}

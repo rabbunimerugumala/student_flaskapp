@@ -1,97 +1,59 @@
 {% extends "base.html" %}
 
-{% block title %}index Page{% endblock %}
+{% block title %}Dashboard | Student Management System{% endblock %}
 
 {% block content %}
 
+<section class="hero">
 
-<style>
-    .image {
-  position: relative;
-  text-align: center;
-  color: white;
-}
+    <img
+        src="{{ url_for('static', filename='img/hm.jpeg') }}"
+        alt="Student classroom"
+        class="hero-image"
+    >
 
-text-overlay {
-  position: fixed; /* Sit on top of the page content */
-  display: none; /* Hidden by default */
-  width: 100%; /* Full width (cover the whole page) */
-  height: 100%; /* Full height (cover the whole page) */
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0,0,0,0.5); /* Black background with opacity */
-  z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
-  cursor: pointer; /* Add a pointer on hover */
-}
+    <div class="hero-overlay"></div>
 
-.text-overlay {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
+    <div class="hero-content">
 
-    a{
-  text-decoration:none
-}
+        <span class="hero-label">
+            STUDENT MANAGEMENT SYSTEM
+        </span>
 
-    .image a{
-  color:#eee
-}
-.text-overlay h4, .meta{
-  font-size:0.7em
-}
-.meta{
-  font-style:italic;
-}
+        <h1>
+            Manage Students.
+            <br>
+            <span>Manage Success.</span>
+        </h1>
 
-</style>
+        <p class="hero-description">
+            A simple and efficient platform to manage student
+            information, records, and academic profiles.
+        </p>
 
-<div class="image">
-  <img src="static/img/hm.jpeg" alt="bg" width="100%" height="100%">
-  <div class="text-overlay">
-      <h4>&ldquo;Success is the sum of small efforts, repeated day in and day out.&rdquo;</h4>
-    <h1>STUDENT MANAGEMENT SYSTEM</h1>
-    <div class="meta">
-     <a href="#" target="_b">rabbuni.merugumala</a> 2026
+        <div class="hero-buttons">
+
+            <a href="{{ url_for('students') }}"
+               class="hero-btn primary-btn">
+                <i class="bi bi-people-fill"></i>
+                View Students
+            </a>
+
+            <a href="{{ url_for('add_student') }}"
+               class="hero-btn secondary-btn">
+                <i class="bi bi-person-plus-fill"></i>
+                Add Student
+            </a>
+
+        </div>
+
+        <div class="hero-quote">
+            <i class="bi bi-quote"></i>
+            Success is the sum of small efforts, repeated day in and day out.
+        </div>
+
     </div>
-  </div>
 
-</div>
-
-
-<!--<style>-->
-
-
-
-<!--img{-->
-<!--    background:url('static/img/hm.jpeg');-->
-<!--    /* Center and scale the image nicely */-->
-<!--    background-position: center;-->
-<!--    background-repeat: no-repeat;-->
-<!--    background-size: cover;-->
-<!--}-->
-
-
-
-
-
-
-
-
-<!--</style>-->
-
-<!--<div class="header">-->
-<!--    <img src="static/img/hm.jpeg" alt="bg" width="100%" height="100%">-->
-<!--  <div class="info">-->
-<!--  <h4>&ldquo;Success is the sum of small efforts, repeated day in and day out.&rdquo;</h4>-->
-<!--    <h1>STUDENT MANAGEMENT SYSTEM</h1>-->
-<!--    <div class="meta">-->
-<!--     <a href="#" target="_b">rabbuni.merugumala</a> 2026-->
-<!--    </div>-->
-<!--  </div>-->
-<!--</div>-->
+</section>
 
 {% endblock %}
